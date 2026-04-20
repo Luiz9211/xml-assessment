@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Display and Transform XML</title>
+<script type="text/javascript">
+function display() {
+    // ========== 已完全替换为你的GitHub专属链接，无需任何修改 ==========
+    var xmlURL = "https://Luiz9211.github.io/xml-assessment/badges.xml";
+    var xmlStyleURL = "https://Luiz9211.github.io/xml-assessment/style.xsl";
+    // ==================================================================
+    var xmlDocument;
+    var xmlStyleSheet
+    var request;
+    try {
+        //load xml document
+        if (window.XMLHttpRequest) {
+            request = new XMLHttpRequest();
+        }
+        else {
+            //older IE
+            request = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        request.open("GET", xmlURL, false);
+        request.send();
+        xmlDocument = request.responseXML;
+
+        //load xml stylesheet
+        request.open("GET", xmlStyleURL, false);
+        request.send();
+        xmlStyleSheet = request.responseXML;
+
+        //transform and display xml document
+        if (window.ActiveXObject) {
+            //older IE
+            transformedXML = xmlDocument.transformNode(xmlStyleSheet);
+            document.getElementById("output").innerHTML = transformedXML;
+        }
+        else {
+            xsltProcessor = new XSLTProcessor();
+            xsltProcessor.importStylesheet(xmlStyleSheet);
+            transformedXML = xsltProcessor.transformToFragment(xmlDocument, document);
+            document.getElementById("output").appendChild(transformedXML);
+        }
+    }
+    catch (err) {
+        alert('Your browser cannot handle this script');
+    }
+}
+</script>
+</head>
+<body onload="display()">
+    <div id="output"></div>
+</body>
+</html>
