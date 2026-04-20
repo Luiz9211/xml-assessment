@@ -9,14 +9,14 @@
         <body>
             <h1>Activity Badges</h1>
 
-            <!-- 筛选仅type="activity"徽章 + 按名称字母A-Z升序排序 -->
+            <!-- Filter activity type badges & sort alphabetically by name -->
             <xsl:for-each select="badge[@type='activity']">
                 <xsl:sort select="name" data-type="text" order="ascending"/>
 
                 <h2><xsl:value-of select="name"/></h2>
                 <p><xsl:value-of select="description"/></p>
 
-                <!-- xsl:choose 判断Beaver等级可用性 -->
+                <!-- Beaver level availability check with xsl:choose -->
                 <p>
                     Beaver:
                     <xsl:choose>
@@ -27,7 +27,7 @@
                     </xsl:choose>
                 </p>
 
-                <!-- xsl:choose 判断Cub等级可用性 -->
+                <!-- Cub level availability check with xsl:choose -->
                 <p>
                     Cub:
                     <xsl:choose>
@@ -38,7 +38,7 @@
                     </xsl:choose>
                 </p>
 
-                <!-- xsl:choose 判断Scout等级可用性 -->
+                <!-- Scout level availability check with xsl:choose -->
                 <p>
                     Scout:
                     <xsl:choose>
@@ -51,7 +51,7 @@
                 <hr/>
             </xsl:for-each>
 
-            <!-- 底部版权声明 严格使用题目要求XHTML字符实体 &#xA9; -->
+            <!-- Copyright statement with XHTML character entity &#xA9; -->
             <p>&#xA9; College Productions Ltd</p>
         </body>
     </html>
